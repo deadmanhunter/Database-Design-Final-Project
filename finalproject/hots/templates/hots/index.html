@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+{% if hero_list %}
+    <ul>
+    {% for hero in hero_list %}
+        <li><a href="/hots/{{ hero.id }}/">{{ hero.hero_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Heroes are available.</p>
+{% endif %}
+</body>
+</html>
