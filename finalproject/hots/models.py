@@ -11,18 +11,19 @@ class Universe(models.Model):
 
 # Playable character from the game
 class Heroes(models.Model):
-	hero_name = models.CharField(max_length=200, unique=True)
-	home_universe = models.ForeignKey(Universe)
-	base_health = models.IntegerField()
-	base_mana = models.IntegerField()
-	base_attack = models.IntegerField()
-	attack_range = models.IntegerField()
-	passive_ability_name = models.CharField(max_length=200)
-	passive_ability_description = models.CharField(max_length=500)
-	has_alternates = models.BooleanField()
+    hero_name = models.CharField(max_length=200, unique=True)
+    hero_type = models.CharField(max_length=200)
+    home_universe = models.ForeignKey(Universe)
+    base_health = models.IntegerField()
+    base_mana = models.IntegerField()
+    base_attack = models.IntegerField()
+    attack_range = models.IntegerField()
+    passive_ability_name = models.CharField(max_length=200)
+    passive_ability_description = models.CharField(max_length=500)
+    has_alternates = models.BooleanField()
 
-        def __unicode__(self):
-            return self.hero_name
+    def __unicode__(self):
+        return self.hero_name
                 # "home_universe": self.home_universe,
                 # "base_health": self.base_health,
                 # "base_mana": self.base_mana,

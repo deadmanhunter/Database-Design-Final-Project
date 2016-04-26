@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+        {% if hero %}
+            <title>{{ hero.hero_name }}</title>
+            <center><h1>{{ hero.hero_name }}</h1></center>
+        {% else %}
+            <title>No hero with the provided id</title>
+            <center><h1 align="50%">Hero Unknown</h1></center>
+        {% endif %}
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    {% if hero %}
+        <ul>
+            <center>
+                <table>
+                    <tr>
+                        <th>Home Universe</th>
+                        <th>Hero Type</th>
+                        <th>Base Health</th>
+                        <th>Base Mana</th>
+                        <th>Base Attack</th>
+                        <th>Base Attack Range</th>
+                        <th>Passive: {{ hero.passive_name }}</th>
+
+                        {% for ability in abilities %}
+                            <th>{{ ability.default_button }} Ability: {{ ability.ability_name }} </th>
+                            <th>{{ ability.name }} Type</th>
+                        {% endfor %}
+
+                        {% for ultimate in ultimates %}
+                            <th>Ultimates: {{ ultimate.ultimate_name }}</th>
+                            <th>{{ ultimate.name }} Type</th>
+                        {% endfor %}
+
+                    </tr>
+                    <tr>
+                        <td>{{ hero.home_universe }}</td>
+                        <td>{{ hero.hero_type }}</td>
+                        <td>{{ hero.base_health }}</td>
+                        <td>{{ hero.base_mana }}</td>
+                        <td>{{ hero.base_attack }}</td>
+                        <td>{{ hero.attack_range }}</td>
+                        <td>{{ hero.passive_ability_description }}</td>
+                        {% for ability in abilities %}
+                            <td>{{ ability.ability_description }}</td>
+                            <td>{{ ability.ability_type }}</td>
+
+                        {% endfor %}
+
+                        {% for ultimate in ultimates %}
+                            <td>{{ ultimate.ultimate_description }}</td>
+                            <td>{{ ultimate.ultimate_type }}</td>
+                        {% endfor %}
+
+                    </tr>
+                </table>
+            </center>
+        </ul>
+    {% else %}
+        <p>No hero with the provided id</p>
+    {% endif %}
+</body>
+</html>

@@ -6,21 +6,23 @@ from django.template import loader
 # Create your views here.
 
 def index(request):
-    heroes = Heroes.objects.order_by("-hero_name")
-    output = ""
+    heroes = Heroes.objects.order_by("hero_name")
     template = loader.get_template('hots/index.html')
     context = {'hero_list': heroes,}
-
-
-    for h in heroes:
-        for a in Abilities.objects.filter(hero_id=h.id):
-            output += h.hero_name + ": " + a.ability_name + ",\n\n"
 
     return HttpResponse(template.render(context, request))
 
 def detail(request, hero_id):
-    response = "Hero: %s"
-    return HttpResponse(response % hero_id)
+    hero = Heroes.objects.get(id=hero_id)
+    abilities = Abilities.objects.filter(hero_id=hero_id)
+    ultimates = Ultimate.objects.filter(hero_id=hero_id)
+    template = loader.get_template('hots/heroes.html')
+    context = {'hero': hero,
+               'abilities': abilities,
+               'ultimates': ultimates}
+
+
+    return HttpResponse(template.render(context, request))
 
 def ability(request, hero_id):
     response = "Hero: %s"

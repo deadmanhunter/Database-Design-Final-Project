@@ -2,17 +2,42 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>Hero List</title>
+    <center><h1>Hero List</h1></center>
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+    </style>
 </head>
 <body>
-{% if hero_list %}
-    <ul>
-    {% for hero in hero_list %}
-        <li><a href="/hots/{{ hero.id }}/">{{ hero.hero_name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No Heroes are available.</p>
-{% endif %}
+    {% if hero_list %}
+        <ul>
+            <center>
+                <table>
+                    <tr>
+                        <th>Hero</th>
+                        <th>Home Universe</th>
+                        <th>Hero Type</th>
+                        <th>Base Health</th>
+                        <th>Base Mana</th>
+                    </tr>
+
+                    {% for hero in hero_list %}
+                        <tr>
+                            <td><li><a href="/hots/{{ hero.id }}/">{{ hero.hero_name}}</a></li></td>
+                            <td>{{ hero.home_universe }}</td>
+                            <td>{{ hero.hero_type }}</td>
+                            <td>{{ hero.base_health }}</td>
+                            <td>{{ hero.base_mana }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </center>
+        </ul>
+    {% else %}
+        <p>No Heroes are available.</p>
+    {% endif %}
 </body>
 </html>
